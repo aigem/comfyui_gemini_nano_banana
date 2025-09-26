@@ -1,7 +1,9 @@
 # ComfyUI 节点：Gemini 香蕉助手 by ai来事
 
 一个面向生产的 ComfyUI 节点，使用 Gemini 2.5 Flash Image（兼容 API）对输入图像进行编辑。将本项目放入 `ComfyUI/custom_nodes/` 后，即可在 ComfyUI 中用自然语言指令进行图像修改。
-调用【KUAI(酷爱) API】方法请查看：https://docs.kuai.host/7451843m0
+> #### 调用【KUAI(酷爱) API】方法请查看：https://docs.kuai.host/7451843m0
+
+![alt text](show.jpg)
 
 ## 环境要求
 - ComfyUI
@@ -82,12 +84,3 @@
 - 幻觉（多手/多物体）：降低 temperature 与 top_p；避免堆叠冲突指令；减少系统提示
 - 频繁限速：增大 timeout；降低短时间内重复运行；适度限制 max_output_tokens
 - 依赖缺失（类型检查器报错）：在运行环境安装 numpy、pillow、requests、torch
-
-## 版本与历史
-- 节点版本：1.0.1（中文友好与模块化）
-- 环境变量：
-  - GEMINI_MAX_RETRIES（默认 2）
-  - GEMINI_HISTORY（1/true/yes/on 启用历史）
-  - GEMINI_HISTORY_DIR（缺省 output/gemini_history）
-  - GEMINI_MAX_PROMPT_CHARS（默认 1000）
-  - GEMINI_FORBIDDEN_TAGS（覆盖默认禁用片段列表）
