@@ -1,0 +1,215 @@
+{
+  "id": "000c99ad-3b0b-4aa3-b5ac-ca15c8edc526",
+  "revision": 0,
+  "last_node_id": 20,
+  "last_link_id": 22,
+  "nodes": [
+    {
+      "id": 16,
+      "type": "SaveImage",
+      "pos": [
+        963.529052734375,
+        166.30313110351562
+      ],
+      "size": [
+        379.649169921875,
+        473.5087585449219
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 20
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadImage",
+      "pos": [
+        258.18218994140625,
+        157.9658966064453
+      ],
+      "size": [
+        270,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "71cf3bc79f3df8dc77c062fd97ab988446102823.webp",
+        "image"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "GeminiEditImage",
+      "pos": [
+        546.6524047851562,
+        162.6669158935547
+      ],
+      "size": [
+        400,
+        484
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            20
+          ]
+        },
+        {
+          "name": "metrics_json",
+          "type": "STRING",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GeminiEditImage"
+      },
+      "widgets_values": [
+        "改为线稿图",
+        1,
+        true,
+        "sk-PCc2uBBTIkPFNGQUvFNpwps4bge1c4sR5ZTt3T73OLbaElTC",
+        30,
+        "(none)",
+        "(none)",
+        0,
+        true,
+        0.5,
+        false,
+        false,
+        0,
+        0,
+        "https://apis.kuai.host/"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PreviewAny",
+      "pos": [
+        1355.42431640625,
+        167.9300537109375
+      ],
+      "size": [
+        210,
+        469.859619140625
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 22
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      19,
+      15,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      19,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      22,
+      19,
+      1,
+      20,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.18.10"
+  },
+  "version": 0.4
+}
