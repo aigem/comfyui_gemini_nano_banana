@@ -1,6 +1,7 @@
 # ComfyUI 节点：Gemini 香蕉助手 by ai来事
 
 一个面向生产的 ComfyUI 节点，使用 Gemini 2.5 Flash Image（兼容 API）对输入图像进行编辑。将本项目放入 `ComfyUI/custom_nodes/` 后，即可在 ComfyUI 中用自然语言指令进行图像修改。
+调用【KUAI(酷爱) API】方法请查看：https://docs.kuai.host/7451843m0
 
 ## 环境要求
 - ComfyUI
