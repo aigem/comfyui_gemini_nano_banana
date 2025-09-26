@@ -1,0 +1,11 @@
+# Core dependencies for ComfyUI Gemini Edit Image Node
+Pillow>=9.0.0
+numpy>=1.19.0
+requests>=2.25.0
+
+# Development dependencies (optional)
+# Uncomment for development work
+# pytest>=7.0.0
+# pytest-cov>=3.0.0
+# black>=22.0.0
+# flake8>=4.0.0

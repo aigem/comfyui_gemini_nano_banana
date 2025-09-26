@@ -1,0 +1,107 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# API Keys and secrets
+.env
+.env.*
+*.key
+*.pem
+*.crt
+*.pfx
+*.p12
+api_keys.txt
+secrets.json
+secrets/
+.secrets/
+*.enc
+*.gpg
+
+# ComfyUI specific
+*.json.backup
+output/
+input/
+temp/
+
+# Test outputs
+test_output/
+test_images/
+
+# Ignore tests by default (optional development only)
+tests/
+test_*.py
+*_test.py
+test_mvp.py
+
+# Docs build artifacts (if any)
+docs/_build/
+site/
+
+# Python packaging caches
+__pypackages__/
+pip-wheel-metadata/
+
+# Local configuration
+config.local.json
+settings.local.json

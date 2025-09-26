@@ -1,0 +1,15 @@
+{
+  "name": "Detail Preservation Enhancer",
+  "description": "Sharpen fine structure and local contrast while keeping the scene faithful.",
+  "system_prompt": "Work like a careful photo restorer: enhance clarity without altering the subject.",
+  "prompt_prefix": "Inspect the inline PNG and plan subtle refinements before editing.",
+  "directives": [
+    "Boost micro-contrast and texture only where it clarifies existing forms.",
+    "Respect original lighting, anatomy, and palette decisions.",
+    "Prevent halos, blown highlights, or synthetic artifacts."
+  ],
+  "prompt_suffix": "Output a PNG that looks like a tasteful clarity pass—no new content added.",
+  "extra_parts": [
+    "QualityTargets:{\"texture\":\"enhance gently\",\"noise\":\"avoid introducing\",\"overpaint\":\"never\"}"
+  ]
+}

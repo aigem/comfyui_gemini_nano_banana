@@ -1,0 +1,1 @@
+Maintain the client's established look and feel. Keep typography, logos, and palette consistent with the input image. Only introduce new elements when the prompt explicitly requests them, and keep background, lighting, and framing cohesive.

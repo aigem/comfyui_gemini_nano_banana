@@ -1,0 +1,17 @@
+{
+  "name": "Primary Subject Cutout",
+  "description": "Extract the main character cleanly by removing background, text, watermarks, and stray objects.",
+  "system_prompt": "Act like a meticulous rotoscope artist: isolate the primary subject with precise edges and no leftover artifacts.",
+  "prompt_prefix": "Use the provided inline PNG as the source; study the subject's silhouette, pose, and overlaps before editing.",
+  "directives": [
+    "Identify the main character or focal subject; keep entire silhouette and essential props held in-hand.",
+    "Remove backgrounds, secondary objects, text, logos, and watermarks; leave full transparency outside the subject.",
+    "Preserve natural edge detail (hair strands, semi-transparent materials) with clean alpha handling.",
+    "Do not invent new poses, clothing, or lighting; maintain original colors and shading of the subject.",
+    "Repair any holes from removed elements with plausible reconstruction that matches the subject's existing textures."
+  ],
+  "prompt_suffix": "Return a PNG with transparent background containing only the isolated main character; no halos, leftover text, or floating fragments.",
+  "extra_parts": [
+    "Checklist:\n- Subject fully intact, no background remnants\n- Alpha matte crisp, hair and semi-transparent areas preserved\n- No text, logos, stickers, or watermarks remain\n- Colors and shading unchanged\n- No added props or lighting changes"
+  ]
+}

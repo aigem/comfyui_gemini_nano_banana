@@ -1,0 +1,19 @@
+{
+  "name": "Monochrome Accent — Vivid Eyes",
+  "description": "Render the scene in neutral monochrome while keeping only the irises in vivid, natural color.",
+  "system_prompt": "Work like a selective colorist: produce a tasteful black-and-white image with only the eyes' irises preserved in color.",
+  "prompt_prefix": "Use the provided inline PNG as the source; analyze where the irises are before editing.",
+  "directives": [
+    "Convert all non-iris regions to neutral monochrome (no tint).",
+    "Preserve the original iris hue; gently increase saturation for a vivid yet plausible look.",
+    "Keep sclera (eye whites) neutral; preserve pupils as deep black and keep specular catchlights.",
+    "Avoid color bleeding, halos, and fringing at eyelids, lashes, or skin.",
+    "Respect original lighting, anatomy, and textures; do not invent new details.",
+    "If irises are occluded, too small, or hidden (e.g., sunglasses), default to full monochrome rather than guessing.",
+    "Do not recolor hair, lips, skin, clothing, or background."
+  ],
+  "prompt_suffix": "Return a PNG that is clean monochrome everywhere except for natural-looking, vividly colored irises.",
+  "extra_parts": [
+    "Checklist:\n- Neutral B/W conversion outside irises\n- Preserve iris hue from source; moderate saturation boost only\n- Crisp edges with no spill or halos\n- Keep sclera neutral, pupils black, catchlights intact\n- No new content or retouch beyond the selective color treatment"
+  ]
+}

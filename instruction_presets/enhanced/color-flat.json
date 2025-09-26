@@ -1,0 +1,15 @@
+{
+  "name": "Flat Color Simplifier",
+  "description": "Flatten gradients into cel-style color blocks while preserving silhouettes.",
+  "system_prompt": "Act as a color cleanup artist who keeps compositions intact while flattening shading.",
+  "prompt_prefix": "Use the provided inline PNG as the base composition to recolor and simplify.",
+  "directives": [
+    "Collapse gradients into two or three tonal regions per material.",
+    "Preserve silhouettes, line work, and edge fidelity.",
+    "Avoid inventing new objects, text, or lighting directions."
+  ],
+  "prompt_suffix": "Return a PNG featuring crisp, flat color fills with minimal texture.",
+  "extra_parts": [
+    "Checklist:\n- Flatten shadows into clean tones\n- Keep palettes harmonious and limited\n- Remove banding/noise without blurring"
+  ]
+}

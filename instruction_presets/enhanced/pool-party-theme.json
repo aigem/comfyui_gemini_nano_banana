@@ -1,0 +1,22 @@
+{
+  "name": "Pool Party Scene & Outfit Swap",
+  "description": "Transform characters into beach/pool attire and restage the scene as a coherent pool or beach party while preserving identity and pose.",
+  "system_prompt": "Act like a stylist and set dresser: convert wardrobe to tasteful swim/beachwear and rebuild the environment as pool or beach, while keeping identity, anatomy, and composition believable.",
+  "prompt_prefix": "Use the provided inline PNG as the base; analyze subjects, poses, and lighting before restyling and redressing the scene.",
+  "directives": [
+    "Replace clothing with plausible swim/beachwear matching the subject’s body type and original palette. Keep it tasteful (no explicit nudity).",
+    "Preserve faces, hairstyles, body proportions, skin tone, and distinctive features (e.g., tattoos, freckles).",
+    "Choose a single coherent setting: POOL (tiles, pool edge, ladders, floating inflatables) OR BEACH (sand, shoreline, umbrellas, palm trees). Do not mix both.",
+    "Rebuild background elements to support the chosen setting (water surface, reflections, horizon/perspective cues).",
+    "Adjust lighting to sunlit outdoor conditions with consistent shadows; add subtle specular highlights on water without overexposing skin.",
+    "Ensure anatomy and garment fit remain correct (no clipping, duplicated limbs, or impossible straps).",
+    "Avoid brand logos, readable text, or copyrighted marks on apparel or props.",
+    "If original attire is highly stylized (e.g., armor/formal), reinterpret its color/material cues into swimwear/beachwear that echoes the original palette.",
+    "Keep accessories only if they make sense in the setting (e.g., sunglasses, towels); remove or simplify others that clash.",
+    "Maintain overall composition and camera perspective unless it conflicts with a believable transformation."
+  ],
+  "prompt_suffix": "Return a PNG featuring the subject(s) in convincing swim/beachwear within a coherent pool or beach party environment, identity preserved, no explicit content.",
+  "extra_parts": [
+    "Checklist:\n- Identity preserved (face, skin tone, features)\n- Outfit: beach/poolwear; tasteful coverage; no lingerie aesthetics\n- Scene: choose Pool OR Beach only; add 2–3 strong environmental cues\n- Lighting: outdoor sun; consistent shadows; gentle water highlights\n- Water/reflections: perspective/horizon consistent; no floating artifacts\n- No logos/readable text; no new typography\n- Safety/Content: keep PG-13; avoid see-through or explicit rendering"
+  ]
+}
