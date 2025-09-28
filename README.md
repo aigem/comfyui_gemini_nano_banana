@@ -1,9 +1,15 @@
-# ComfyUI 节点：Gemini 香蕉助手 by ai来事
+![version](https://img.shields.io/badge/version-1.10-blue)
+![gemini](https://img.shields.io/badge/Gemini-原生格式重要-blueviolet)
+![model](https://img.shields.io/badge/model-gemini--2.5--flash--image--preview-brightgreen)
+![nano-banana](https://img.shields.io/badge/Nano%20Banana-enabled-orange)
+![base-url](https://img.shields.io/badge/base--url-apis.kuai.host-informational)
+![comfyui](https://img.shields.io/badge/ComfyUI-compatible-success)
+![python](https://img.shields.io/badge/Python-%E2%89%A53.8-3776AB)
+![license](https://img.shields.io/badge/License-MIT-lightgrey)
+
+# ComfyUI 节点：Gemini Nano Banana Edit改图助手 [kuai.host]
 
 一个面向生产的 ComfyUI 节点，使用 Gemini 2.5 Flash Image（兼容 API）对输入图像进行编辑。将本项目放入 `ComfyUI/custom_nodes/` 后，即可在 ComfyUI 中用自然语言指令进行图像修改。
-> #### 调用【KUAI(酷爱) API】方法请查看：https://docs.kuai.host/7451843m0
-
-![alt text](show.jpg)
 
 ## 环境要求
 - ComfyUI
@@ -13,7 +19,7 @@
 ## 安装
 1. 复制或克隆本仓库到 `ComfyUI/custom_nodes/confyui-gemini-nano-banana`。
 2. 在 ComfyUI 使用的 Python 环境中执行：`pip install -r requirements.txt`（一般都有了，无需安装）。
-3. 重启 ComfyUI。节点显示为“AI / Gemini -> Gemini 香蕉助手 by ai来事”。
+3. 重启 ComfyUI。节点显示为“AI / Gemini -> Gemini Nano Banana Edit改图助手 [kuai.host]”。
 
 ## 节点输出
 - image：编辑后的图像张量（保持输入布局：BHWC 或 BCHW）
@@ -41,10 +47,17 @@
 - base_url：Gemini 兼容服务基础地址，默认 `https://apis.kuai.host/`（与官方接口格式一致即兼容）。
 
 ## 工作流建议
-- 基本流程：`Load Image` -> `Gemini 香蕉助手 by ai来事` -> `Save Image`
+- 基本流程：`Load Image` -> `Gemini Nano Banana Edit改图助手 [kuai.host]` -> `Save Image`
 - 初次使用建议将 temperature/top_p 设为 0，minimal_response 保持启用，先验证基础行为
 - 需要强调风格或规则时，使用 instruction_preset 与 system_prompt 管理通用指令；参考图用于自然融合
 - 如果输出没有图像或被安全阻断：精简提示词；明确要求“仅返回编辑后的 PNG 图像”
+
+## 节点说明集中化（descriptions/*.md）
+- 为了让节点说明易于维护与团队协作，本项目将节点说明集中存放在 descriptions/ 目录：
+  - descriptions/GeminiEditImage.md（图生图/多图生图节点）
+  - descriptions/GeminiTextToImage.md（文生图节点）
+- 节点类通过 DESCRIPTION = load_node_description("<类名>") 自动加载对应 Markdown，ComfyUI 面板会显示该说明。
+- 更新说明时，仅需编辑对应的 Markdown 文件，重启 ComfyUI 即可生效（某些环境下可热重载，但建议重启确保一致）。
 
 ## 指令预设（instruction_presets）
 - 位置：`instruction_presets/`（支持子目录）
@@ -84,3 +97,19 @@
 - 幻觉（多手/多物体）：降低 temperature 与 top_p；避免堆叠冲突指令；减少系统提示
 - 频繁限速：增大 timeout；降低短时间内重复运行；适度限制 max_output_tokens
 - 依赖缺失（类型检查器报错）：在运行环境安装 numpy、pillow、requests、torch
+
+## 版本与历史
+- 节点版本：1.10（中文友好与模块化）
+- 环境变量：
+  - GEMINI_MAX_RETRIES（默认 2）
+  - GEMINI_HISTORY（1/true/yes/on 启用历史）
+  - GEMINI_HISTORY_DIR（缺省 output/gemini_history）
+  - GEMINI_MAX_PROMPT_CHARS（默认 1000）
+  - GEMINI_FORBIDDEN_TAGS（覆盖默认禁用片段列表）
+
+## 更新日志
+- 1.10（2025-09-28）
+  - 新增“Gemini Nano Banana T2I文生图助手 [kuai.host]”节点（nodes_text.py），支持仅文本生成图片，默认访问 https://apis.kuai.host/ 的 {base}/v1beta/models/{model}:generateContent
+  - 新增 API 封装 call_gemini_api_text，复用重试/超时/指标逻辑
+  - 支持并行批量生成、指令预设与系统提示、minimal_response 约束仅返回 PNG
+  - 版本号提升至 1.10 / 1.10.0（pyproject）

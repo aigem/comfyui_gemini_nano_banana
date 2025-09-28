@@ -1,8 +1,8 @@
 {
   "id": "000c99ad-3b0b-4aa3-b5ac-ca15c8edc526",
   "revision": 0,
-  "last_node_id": 20,
-  "last_link_id": 22,
+  "last_node_id": 29,
+  "last_link_id": 29,
   "nodes": [
     {
       "id": 16,
@@ -16,13 +16,102 @@
         473.5087585449219
       ],
       "flags": {},
-      "order": 2,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 20
+          "link": 25
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PreviewAny",
+      "pos": [
+        1355.42431640625,
+        167.9300537109375
+      ],
+      "size": [
+        210,
+        469.859619140625
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 29
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "PreviewAny",
+      "pos": [
+        1359.48974609375,
+        715.6795043945312
+      ],
+      "size": [
+        210,
+        469.859619140625
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "source",
+          "type": "*",
+          "link": 27
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.33",
+        "Node name for S&R": "PreviewAny"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 24,
+      "type": "SaveImage",
+      "pos": [
+        967.5944213867188,
+        714.0525512695312
+      ],
+      "size": [
+        379.649169921875,
+        473.5087585449219
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
         }
       ],
       "outputs": [],
@@ -39,8 +128,8 @@
       "id": 15,
       "type": "LoadImage",
       "pos": [
-        258.18218994140625,
-        157.9658966064453
+        -77.44879913330078,
+        166.5948028564453
       ],
       "size": [
         270,
@@ -55,7 +144,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            19
+            24
           ]
         },
         {
@@ -75,30 +164,32 @@
       ]
     },
     {
-      "id": 19,
+      "id": 21,
       "type": "GeminiEditImage",
       "pos": [
-        546.6524047851562,
-        162.6669158935547
+        521.2357788085938,
+        167.22975158691406
       ],
       "size": [
         400,
         484
       ],
-      "flags": {},
-      "order": 1,
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 19
+          "link": 24
         },
         {
           "name": "image_2",
           "shape": 7,
           "type": "IMAGE",
-          "link": null
+          "link": 28
         },
         {
           "name": "image_3",
@@ -118,14 +209,14 @@
           "name": "image",
           "type": "IMAGE",
           "links": [
-            20
+            25
           ]
         },
         {
           "name": "metrics_json",
           "type": "STRING",
           "links": [
-            22
+            29
           ]
         }
       ],
@@ -133,11 +224,11 @@
         "Node name for S&R": "GeminiEditImage"
       },
       "widgets_values": [
-        "改为线稿图",
+        "请根据提示修改这张图片",
         1,
         true,
         "sk-PCc2uBBTIkPFNGQUvFNpwps4bge1c4sR5ZTt3T73OLbaElTC",
-        30,
+        60,
         "(none)",
         "(none)",
         0,
@@ -151,55 +242,140 @@
       ]
     },
     {
-      "id": 20,
-      "type": "PreviewAny",
+      "id": 29,
+      "type": "LoadImage",
       "pos": [
-        1355.42431640625,
-        167.9300537109375
+        212.618896484375,
+        166.34840393066406
       ],
       "size": [
-        210,
-        469.859619140625
+        270,
+        314.0000305175781
       ],
       "flags": {},
-      "order": 3,
+      "order": 1,
       "mode": 0,
-      "inputs": [
+      "inputs": [],
+      "outputs": [
         {
-          "name": "source",
-          "type": "*",
-          "link": 22
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
         }
       ],
-      "outputs": [],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.33",
-        "Node name for S&R": "PreviewAny"
+        "Node name for S&R": "LoadImage"
       },
-      "widgets_values": []
+      "widgets_values": [
+        "Generated Image August 27, 2025 - 12_22AM.jpeg",
+        "image"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "GeminiTextToImage",
+      "pos": [
+        519.6168212890625,
+        706.2153930664062
+      ],
+      "size": [
+        400,
+        372
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "metrics_json",
+          "type": "STRING",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GeminiTextToImage"
+      },
+      "widgets_values": [
+        "一只黑猫\n",
+        1,
+        true,
+        "",
+        30,
+        "(none)",
+        "(none)",
+        0,
+        true,
+        0,
+        0,
+        "https://apis.kuai.host/"
+      ]
     }
   ],
   "links": [
     [
-      19,
+      24,
       15,
       0,
-      19,
+      21,
       0,
       "IMAGE"
     ],
     [
-      20,
-      19,
+      25,
+      21,
       0,
       16,
       0,
       "IMAGE"
     ],
     [
-      22,
-      19,
+      26,
+      23,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      23,
+      1,
+      25,
+      0,
+      "*"
+    ],
+    [
+      28,
+      29,
+      0,
+      21,
+      1,
+      "IMAGE"
+    ],
+    [
+      29,
+      21,
       1,
       20,
       0,

@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-gemini-edit"
-version = "1.0.0"
+version = "1.10.0"
 description = "ComfyUI custom node for editing images using Google Gemini 2.5 Flash Image API"
 authors = [
     { name = "ComfyUI Gemini Integration" }

@@ -1,5 +1,5 @@
 ﻿"""
-ComfyUI 自定义节点：Gemini 香蕉助手 by ai来事
+ComfyUI 自定义节点：Gemini Nano Banana Edit改图助手 [kuai.host]
 使用 Gemini 2.5 Flash Image API（兼容 API）编辑图像
 """
 
@@ -22,6 +22,7 @@ except Exception:
 from .image_utils import tensor_to_pil, pil_to_base64, base64_to_pil, pil_to_tensor
 from .api_client import call_gemini_api, normalize_generation_config
 from .response_utils import extract_usage_metadata, extract_image_from_response
+from .doc_utils import load_node_description
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,7 @@ class GeminiEditImage:
 
     CATEGORY = "AI/Gemini"
     DEFAULT_MODEL = "gemini-2.5-flash-image-preview"
+    DESCRIPTION = load_node_description("GeminiEditImage")
 
     @classmethod
     def INPUT_TYPES(cls) -> Dict[str, Any]:
@@ -589,13 +591,13 @@ class GeminiEditImage:
 
         except Exception as exc:
             safe_msg = str(exc).replace(api_key if api_key else "", "***")
-            logger.error("Gemini 香蕉助手 by ai来事错误: %s", safe_msg)
-            raise RuntimeError(f"Gemini 香蕉助手 by ai来事失败: {safe_msg}")
+            logger.error("Gemini Nano Banana Edit改图助手 [kuai.host]错误: %s", safe_msg)
+            raise RuntimeError(f"Gemini Nano Banana Edit改图助手 [kuai.host]失败: {safe_msg}")
 
 
 # 节点注册
 NODE_CLASS_MAPPINGS = {"GeminiEditImage": GeminiEditImage}
-NODE_DISPLAY_NAME_MAPPINGS = {"GeminiEditImage": "Gemini 香蕉助手 by ai来事"}
+NODE_DISPLAY_NAME_MAPPINGS = {"GeminiEditImage": "Gemini Nano Banana Edit改图助手 [kuai.host]"}
 
-__version__ = "1.0.1"
+__version__ = "1.10"
 __author__ = "ComfyUI Gemini Integration (modular Chinese-friendly)"
