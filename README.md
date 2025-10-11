@@ -31,7 +31,7 @@
 - image：输入图像张数或 PIL Image。批大小必须为 1。
 - prompt：自然语言说明如何编辑图像。节点会限制最大 1000 字符。
 - api_key：Gemini 兼容 API 的 Key。
-- timeout：HTTP 请求超时时间（默认为30秒）。
+- timeout：HTTP 请求超时时间（默认为60秒）。
 
 ### 可选
 - instruction_preset：从 `instruction_presets/` 选择 JSON 预设（下拉出现相对路径，如 `enhanced/color-flat.json`）。用于追加模板化指令或系统说明，帮助风格/安全/一致性。

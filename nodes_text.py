@@ -54,7 +54,7 @@ class GeminiTextToImage:
                 "num_outputs": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
                 "parallel": ("BOOLEAN", {"default": True, "tooltip": "并行请求多张生成。"}),
                 "api_key": ("STRING", {"default": "", "password": True}),
-                "timeout": ("INT", {"default": 30, "min": 5, "max": 120, "step": 5, "display": "slider"}),
+                "timeout": ("INT", {"default": 60, "min": 5, "max": 120, "step": 5, "display": "slider"}),
             },
             "optional": {
                 "instruction_preset": (preset_choices, {"default": default_preset}),
@@ -244,15 +244,32 @@ class GeminiTextToImage:
             items: List[Dict[str, Any]] = []
 
             def _one_call(idx: int) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+                # 文生图并发多图时注入 per-request seed 与零宽字符扰动（在 temperature==0 下）
                 metrics_ref: Dict[str, Any] = {}
+                per_request_cfg: Dict[str, Any] = dict(override_cfg or {})
+                try:
+                    if int(num_outputs) > 1:
+                        import time as _t
+                        seed_base = int((_t.time() * 1000)) & 0x7FFFFFFF
+                        per_request_cfg["seed"] = (seed_base + int(idx)) % 2147483647
+                except Exception:
+                    pass
+                per_extra_parts = list(extra_user_parts or [])
+                try:
+                    temp_val = override_src.get("temperature", 0.0)
+                    if int(num_outputs) > 1 and (not isinstance(temp_val, (int, float)) or float(temp_val) <= 0.0):
+                        invisible = "\u200b" * (int(idx) + 1)
+                        per_extra_parts.append(invisible)
+                except Exception:
+                    pass
                 resp = call_gemini_api_text(
                     prompt=final_prompt,
                     api_key=api_key,
                     timeout=timeout,
                     model=effective_model,
                     system_prompt=system_prompt_used or None,
-                    extra_text_parts=extra_user_parts or None,
-                    generation_config=override_cfg or None,
+                    extra_text_parts=per_extra_parts or None,
+                    generation_config=per_request_cfg or None,
                     base_url=base_url,
                     max_retries=int(os.getenv("GEMINI_MAX_RETRIES", "2")),
                     metrics_ref=metrics_ref,

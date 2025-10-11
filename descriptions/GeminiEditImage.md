@@ -2,7 +2,7 @@
 
 Gemini 香蕉助手（图生图/多图生图）
 - 功能：使用 Gemini 2.5 Flash Image（兼容 API）基于输入图像进行编辑，可附加多张参考图。
-- 接口：{base_url}/v1beta/models/{model}:generateContent（默认 base_url=https://apis.kuai.host/，model=gemini-2.5-flash-image-preview）
+- 接口：{base_url}/v1beta/models/{model}:generateContent（默认 base_url=https://apis.kuai.host/，model=gemini-2.5-flash-image）
 
 主要输入
 - image（必填）：主图像。

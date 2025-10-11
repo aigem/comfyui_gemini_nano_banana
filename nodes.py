@@ -38,7 +38,7 @@ class GeminiEditImage:
     """
 
     CATEGORY = "AI/Gemini"
-    DEFAULT_MODEL = "gemini-2.5-flash-image-preview"
+    DEFAULT_MODEL = "gemini-2.5-flash-image"
     DESCRIPTION = load_node_description("GeminiEditImage")
 
     @classmethod
@@ -87,7 +87,7 @@ class GeminiEditImage:
                 "timeout": (
                     "INT",
                     {
-                        "default": 30,
+                        "default": 60,
                         "min": 5,
                         "max": 120,
                         "step": 5,
@@ -429,7 +429,25 @@ class GeminiEditImage:
             items: List[Dict[str, Any]] = []
 
             def _one_call(idx: int) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+                # 为并发多图注入轻量随机性：每请求不同 seed；temperature==0 时再加零宽字符片段打破缓存
                 metrics_ref: Dict[str, Any] = {}
+                per_request_cfg: Dict[str, Any] = dict(override_cfg or {})
+                try:
+                    if int(num_outputs) > 1:
+                        import time as _t
+                        seed_base = int((_t.time() * 1000)) & 0x7FFFFFFF
+                        per_request_cfg["seed"] = (seed_base + int(idx)) % 2147483647
+                except Exception:
+                    pass
+                per_extra_parts = list(extra_user_parts or [])
+                try:
+                    # 当 temperature 未显式提升且多图时，增加零宽字符做为无害扰动
+                    temp_val = override_src.get("temperature", 0.0)
+                    if int(num_outputs) > 1 and (not isinstance(temp_val, (int, float)) or float(temp_val) <= 0.0):
+                        invisible = "\u200b" * (int(idx) + 1)
+                        per_extra_parts.append(invisible)
+                except Exception:
+                    pass
                 resp = call_gemini_api(
                     images_base64=image_base64_list,
                     prompt=final_prompt,
@@ -437,8 +455,8 @@ class GeminiEditImage:
                     timeout=timeout,
                     model=effective_model,
                     system_prompt=system_prompt_used or None,
-                    extra_text_parts=extra_user_parts or None,
-                    generation_config=override_cfg or None,
+                    extra_text_parts=per_extra_parts or None,
+                    generation_config=per_request_cfg or None,
                     base_url=base_url,
                     max_retries=self.max_retries,
                     metrics_ref=metrics_ref,

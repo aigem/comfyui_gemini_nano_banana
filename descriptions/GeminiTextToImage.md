@@ -2,7 +2,7 @@
 
 Gemini 文生图
 - 功能：文本生成图像
-- 接口：{base_url}/v1beta/models/{model}:generateContent（默认 base_url=https://apis.kuai.host/，model=gemini-2.5-flash-image-preview）
+- 接口：{base_url}/v1beta/models/{model}:generateContent（默认 base_url=https://apis.kuai.host/，model=gemini-2.5-flash-image）
 
 主要输入
 - prompt（必填）：详细描述希望生成的内容/风格/细节（建议 ≤1000 字符）。

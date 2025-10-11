@@ -5,7 +5,7 @@ DEFAULT_SYSTEM_PROMPT = ""
 INSTRUCTION_PRESET_DIR = Path(__file__).resolve().parent / "instruction_presets"
 SYSTEM_PROMPT_DIR = INSTRUCTION_PRESET_DIR / "system_prompt"
 
-DEFAULT_MODEL = "gemini-2.5-flash-image-preview"
+DEFAULT_MODEL = "gemini-2.5-flash-image"
 DEFAULT_BASE_URL = "https://apis.kuai.host/"
 
 # 历史记录相关环境变量键名
