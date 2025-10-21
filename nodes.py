@@ -169,7 +169,16 @@ class GeminiEditImage:
                         "tooltip": "核采样上限（0 使用服务默认值）。",
                     },
                 ),
-
+                "seed": (
+                    "INT",
+                    {
+                        "default": -1,
+                        "min": -1,
+                        "max": 2147483646,
+                        "step": 1,
+                        "tooltip": "生成种子；-1 表示随机，每次运行都会变化。",
+                    },
+                ),
                 "base_url": (
                     "STRING",
                     {
@@ -345,6 +354,7 @@ class GeminiEditImage:
         parallel: bool = True,
         base_url: str = "https://apis.kuai.host/",
         model: Optional[str] = None,
+        seed: int = -1,
     ) -> Tuple[Any, str]:
         try:
             self.validate_inputs(api_key, prompt)
@@ -415,6 +425,16 @@ class GeminiEditImage:
                 override_src["temperature"] = max(0.0, min(2.0, float(temperature)))
             if isinstance(top_p, (int, float)) and float(top_p) > 0:
                 override_src["top_p"] = max(0.0, min(1.0, float(top_p)))
+            # 处理种子：-1 表示随机；非负表示固定基准种子，按 idx 偏移复现多图
+            try:
+                if isinstance(seed, (int, float)):
+                    seed_int = int(seed)
+                    if seed_int >= 0:
+                        override_src["seed"] = seed_int % 2147483647
+                # 注意：具体每张的 idx 偏移在 _one_call 内实现
+            except Exception:
+                pass
+
             override_cfg = normalize_generation_config(override_src)
 
             if bool(minimal_response):
@@ -435,8 +455,18 @@ class GeminiEditImage:
                 try:
                     if int(num_outputs) > 1:
                         import time as _t
-                        seed_base = int((_t.time() * 1000)) & 0x7FFFFFFF
+                        if isinstance(seed, int) and seed >= 0:
+                            seed_base = seed % 2147483647
+                        else:
+                            seed_base = int((_t.time() * 1000)) & 0x7FFFFFFF
                         per_request_cfg["seed"] = (seed_base + int(idx)) % 2147483647
+                    else:
+                        # 单图时也要根据 seed 决定：固定或随机
+                        if isinstance(seed, int) and seed >= 0:
+                            per_request_cfg["seed"] = seed % 2147483647
+                        else:
+                            import time as _t2
+                            per_request_cfg["seed"] = (int((_t2.time() * 1000)) & 0x7FFFFFFF)
                 except Exception:
                     pass
                 per_extra_parts = list(extra_user_parts or [])
@@ -558,6 +588,7 @@ class GeminiEditImage:
                 "minimal_response": bool(minimal_response),
                 "temperature": override_src.get("temperature"),
                 "top_p": override_src.get("top_p"),
+                "seed": int(seed) if isinstance(seed, int) else None,
                 "reference_image_count": len(image_base64_list),
                 "timestamp": datetime.utcnow().isoformat() + "Z",
             }
