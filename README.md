@@ -1,3 +1,5 @@
+# 最新 Nano Banana Pro 节点请查看 https://github.com/aigem/ComfyUI_KuAi_Power
+
 ![version](https://img.shields.io/badge/version-1.10-blue)
 ![gemini](https://img.shields.io/badge/Gemini-原生格式重要-blueviolet)
 ![model](https://img.shields.io/badge/model-gemini--2.5--flash--image--preview-brightgreen)
